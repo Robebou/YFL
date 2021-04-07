@@ -1,8 +1,13 @@
 var express = require('express');
-require('../js/index.js')
+const index = require('../js/index.js')
 var app = module.exports = express();
 
 app.get('/', (req, res) => {
-    getMovies();
-    res.render('index',{}) 
+    const data2 = index.getMovies()
+    .then(respData => {
+        console.log(respData)
+        res.render('index',{respData: respData})
+    })
+    
+    
 })

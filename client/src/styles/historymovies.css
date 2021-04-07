@@ -1,0 +1,11 @@
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.movie img {
+    max-width: 100%;
+}
+.movie {
+    width: 250px;
+    margin: 1rem;
+}
