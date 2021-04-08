@@ -1,11 +1,12 @@
 import React from 'react';
 import "../styles/navigation.css"
+import logo from '../ressources/final_logo.png';
 
 const Navigation = () => {
     return (
         <div className="navigation">
             <header>
-                <img src="https://raw.githubusercontent.com/Robebou/YFL/main/ressources/final_logo.png?token=ARN4QZALWH3P7OV4JYA355LAMORTG" alt="logo" class="logo"/>
+                <img src={logo} alt="logo" class="logo"/>
                 <nav>
                     <ul>
                         <li class="li-not-pp"><a href="#">Ma Liste</a></li>
