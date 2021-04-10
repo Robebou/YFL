@@ -1,7 +1,26 @@
 .slide-container {
-   width: 500px;
-   position:relative;
+   width: 16%;
    margin-top: auto;
+   margin-left: 2%;
    margin-bottom: auto;
-   border: 8px solid black;
+   position: relative;
+   float: left;
+   top: 200px;
+}
+.image-container img {
+   width: 98%;
+   border: 3px solid black;
+}
+.h1-trending { 
+   width: 100%;
+   color: black; 
+   font-family: 'Raleway',sans-serif; 
+   font-size: 1rem; 
+   font-weight: 800; 
+   line-height: 72px; 
+   margin: 0 0 2%; 
+   text-align: center; 
+   text-transform: uppercase; 
+   background-color: blueviolet;
+   border-radius: 10%;
 }

@@ -1,9 +1,7 @@
-.container {
-    margin: 0 auto;
-    width: 80%;
-}
-header {
-   background-color: #032541; 
+.navigation {
+    min-width: 100%;
+    background-color: #032541; 
+    height: 20%;
 }
 header::after {
     content: '';

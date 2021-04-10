@@ -11,7 +11,8 @@ function HistoryMovies() {
     useEffect(async () => {
         const response = await fetch(API_URL_POPULAR);
         const data = await response.json();
-        //setMovies(data.results)
+        setMovies(data.results)
+        //setMovies((data.results).splice(0,5))
     }, []);
     return <div className="movie-container">{movies.map((movie) => <Movie key = {movie.id} {...movie} />)}</div>
     

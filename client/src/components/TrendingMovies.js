@@ -4,11 +4,10 @@ import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 
 import "../styles/trendingmovies.css";
-import Movie from "../components/Movie.js"
 
 const API_URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=9ea3fe10f4f94f70b6169e29f0f576d6&language=en-US&page=1';
 const API_IMAGES = 'https://image.tmdb.org/t/p/w500';
-const MaxTrendingFilms = 4;
+const MaxTrendingFilms = 10;
 
 const properties = {
     duration: 2000,
@@ -29,6 +28,7 @@ function TrendingMovies() {
     }, []);
     return (
         <div className="slide-container">
+            <h1 className="h1-trending"S>Trending Films</h1>
             <Fade {...properties}>
                 {movies.map((movie) => 
                     <div className="each-fade">
