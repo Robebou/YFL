@@ -30,13 +30,13 @@ function TrendingMovies() {
     return (
         <div className="slide-container">
             <Fade {...properties}>
-            {movies.map((movie) => 
-            <div className="each-fade">
-                <div className="image-container">
-                    <img src={API_IMAGES + movie.poster_path} />
-                </div>
-            </div>
-            )}    
+                {movies.map((movie) => 
+                    <div className="each-fade">
+                        <div className="image-container">
+                            <img src={API_IMAGES + movie.poster_path} />
+                        </div>
+                    </div>
+                )}    
             </Fade>
         </div>
     )
