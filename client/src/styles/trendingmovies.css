@@ -1,0 +1,7 @@
+.slide-container {
+   width: 500px;
+   position:relative;
+   margin-top: auto;
+   margin-bottom: auto;
+   border: 8px solid black;
+}
