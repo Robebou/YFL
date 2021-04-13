@@ -1,5 +1,6 @@
 .slide-container {
    width: 16%;
+   max-width: 600px;
    margin-top: auto;
    margin-left: 2%;
    margin-bottom: auto;
