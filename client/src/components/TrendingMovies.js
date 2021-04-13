@@ -5,8 +5,11 @@ import 'react-slideshow-image/dist/styles.css'
 
 import "../styles/trendingmovies.css";
 
-const API_URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=9ea3fe10f4f94f70b6169e29f0f576d6&language=en-US&page=1';
+const API_URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=9ea3fe10f4f94f70b6169e29f0f576d6&language=en-US';
+const API_URL_LATEST = 'https://api.themoviedb.org/3/movie/latest?api_key=9ea3fe10f4f94f70b6169e29f0f576d6&language=en-US'
+
 const API_IMAGES = 'https://image.tmdb.org/t/p/w500';
+
 const MaxTrendingFilms = 10;
 
 const properties = {
@@ -24,7 +27,7 @@ function TrendingMovies() {
     useEffect(async () => {
         const response = await fetch(API_URL_POPULAR);
         const data = await response.json();
-        setMovies((data.results).splice(0,MaxTrendingFilms)) // on ne prend que les 4 premiers élements data --> 4 premiers films de la liste Trending
+        setMovies(data.results) // on ne prend que les 4 premiers élements data --> 4 premiers films de la liste Trending
     }, []);
     return (
         <div className="slide-container">
