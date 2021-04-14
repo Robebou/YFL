@@ -9,10 +9,10 @@ const Navigation = () => {
                 <img src={logo} alt="logo" class="logo"/>
                 <nav>
                     <ul>
-                        <li class="li-not-pp"><a href="#">Ma Liste</a></li>
-                        <li class="li-not-pp"><a href="#">Film</a></li>
-                        <li class="li-not-pp"><a href="#">Série</a></li>
-                        <li><a href="#"><img src ="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg" class="img-nav-pp"/></a></li>
+                        <li className="li-not-pp"><a href="#">Ma Liste</a></li>
+                        <li className="li-not-pp"><a href="#">Film</a></li>
+                        <li className="li-not-pp"><a href="#">Série</a></li>
+                        <li><a href="#"><img src ="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg" className="img-nav-pp"/></a></li>
 
                     </ul>
                 </nav>
