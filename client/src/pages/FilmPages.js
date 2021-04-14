@@ -7,7 +7,7 @@ const FilmPages = () => {
         <div className="home">
             <Navigation />
             <div className="div-home-body"> 
-            <DetailFilm key = {movie_id}{...movie_id} />
+            <DetailFilm movie_id = {movie_id} />
             </div>         
         </div>
     )

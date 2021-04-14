@@ -12,9 +12,9 @@ const DetailFilm = ({movie_id}) => {
 
     },[])
     return (
-<div>
+        <div>
 
-</div>
+        </div>
     )
 }
 export default DetailFilm;
