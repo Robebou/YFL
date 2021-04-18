@@ -7,11 +7,13 @@
 
 }
 .movie img {
+    width: 300px;
     max-width: 100%;
 }
 .movie {
-    width: 250px;
-    padding: 2rem;
+    margin: 10px;
+    background-color: #363D6B;
+    width: 300px;
 }
 .image-movie {
     transition: 1s;
@@ -19,4 +21,8 @@
 .image-movie:hover {
     transform: scale(1.3);
     z-index: 2;
+}
+.h2-movie {
+    color: white;
+    text-align: center;
 }

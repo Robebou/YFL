@@ -7,7 +7,7 @@ const Movie = ({title, poster_path, overview, vote_average}) => {
         <div className="movie">
             <img src = {API_IMAGES + poster_path} className="image-movie"/>
             <div className="movie-info">
-                <h2>{title}</h2>
+                <h2 className ="h2-movie">{title}</h2>
             </div>
         </div>
     )

@@ -1,13 +1,15 @@
 import Navigation from "../components/Navigation.js";
 import HistoryMovies from "../components/HistoryMovies.js";
 import TrendingMovies from "../components/TrendingMovies.js";
+import "../styles/home.css"
+import GenreFilm from "../components/GenreFilm.js";
+
 const Home = () => {
     return (
         <div className="home">
-            <Navigation />
             <div className="div-home-body">
                 <TrendingMovies />
-                <HistoryMovies />   
+                <GenreFilm/>   
             </div>         
         </div>
     )

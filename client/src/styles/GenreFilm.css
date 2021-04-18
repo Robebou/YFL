@@ -1,0 +1,17 @@
+.genre-container {
+    width: 80%;
+    float: right;
+    margin-top: 20px;
+    background-color: #363D6B;
+    color: white;   
+    margin-right: 10px;
+}
+.image-movie-genre {
+    width: 200px;
+    height: 98%;
+    margin-left: 15px;
+}
+.h2-genre {
+    margin-top: 0px;
+    background-color: #22274D;
+}
