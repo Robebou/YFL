@@ -11,6 +11,9 @@ const GenreFilm = () => {
         const response = await fetch(API_URL_GENRE);
         const data = await response.json();
         setGenres(data.genres);
+        data.genres.map(element => {
+            delete element[""]
+        })
         console.log(data.genres)
     },[])
 
