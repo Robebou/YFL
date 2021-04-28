@@ -10,7 +10,6 @@ const DetailFilm = ({movie_id}) => {
     const API_URL_RECOMMENDATIONS = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${api_key}&language=en-US&page=1`
     const API_IMAGES = 'https://image.tmdb.org/t/p/w500';
     
-
     useEffect(async ()=>{
 
         const response = await fetch(API_URL_DETAILS);
