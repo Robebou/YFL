@@ -47,10 +47,8 @@ const GenreFilm = ({genre_id}) => {
             swipeable = {false}
             draggable={false}
             showDots={false}
-            infinite = {true}
+            infinite = {false}
             responsive = {responsive}
-            itemClass="caroussel-item"
-
             >
                 {movies.map((movie) => 
                     <Link to={`/movie/${movie.id}`}>

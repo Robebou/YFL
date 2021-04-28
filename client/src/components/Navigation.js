@@ -1,12 +1,12 @@
 import React from 'react';
 import "../styles/navigation.css"
 import logo from '../ressources/final_logo.png';
-import {Link} from 'react-router-dom';
+
 const Navigation = () => {
     return (
         <div className="navigation">
             <header>
-                <Link to ="/"><img src={logo} alt="logo" class="logo"/></Link>
+                <img src={logo} alt="logo" class="logo"/>
                 <nav>
                     <ul>
                         <li className="li-not-pp"><a href="#">Ma Liste</a></li>
