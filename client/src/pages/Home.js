@@ -1,5 +1,3 @@
-import Navigation from "../components/Navigation.js";
-import HistoryMovies from "../components/HistoryMovies.js";
 import TrendingMovies from "../components/TrendingMovies.js";
 import "../styles/home.css"
 import GenreFilm from "../components/GenreFilm.js";

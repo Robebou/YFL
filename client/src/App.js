@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Navigation from "./components/Navigation";
 import FilmPages from "./pages/FilmPages";
 import Home from "./pages/Home";
