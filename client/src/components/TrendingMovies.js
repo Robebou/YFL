@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
@@ -36,7 +37,10 @@ function TrendingMovies() {
                 {movies.map((movie) => 
                     <div className="each-fade">
                         <div className="image-container">
+                        <Link to={`/movie/${movie.id}`} key={movie.id}>
                             <img src={API_IMAGES + movie.poster_path} />
+                        </Link>
+                            
                         </div>
                     </div>
                 )}    
