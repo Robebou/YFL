@@ -8,10 +8,16 @@
 }
 .image-movie-genre {
     width: 200px;
-    height: 98%;
-    margin-left: 15px;
+    height: 100%;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+.image-movie-genre:hover {
+    cursor: pointer;
+	transform: scale(1.1);
 }
 .h2-genre {
-    margin-top: 0px;
     background-color: #22274D;
+    margin: 0;
+    font-size: 2.5rem;
 }
