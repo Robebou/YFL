@@ -10,10 +10,11 @@
     flex-direction: column;
     overflow: hidden;
 }
-.h2-detail {
+.h2-detail,.h2-detail-recommndation {
     color: white;
     font-size: 3rem;
 }
+
 .detail-overview {
     color: white;
     font-size: 2rem;
@@ -33,18 +34,23 @@
     color: white;
     font-size: 1.5rem;
     width: 20%;
-    float: left;
+    margin-right: auto;
+
 }
 .detail-more-info p {
     padding-top: 20px;
+    
     padding-bottom: 20px;
 }
 .detail-bottom {
+    margin-top: 50px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     width: 100%;
 }
 .detail-recommandation {
-    margin-left: 150px;
-    width: 100%;
+    width: 40%;
+    background-color: #363D6B;
+    margin-right: auto;
 }

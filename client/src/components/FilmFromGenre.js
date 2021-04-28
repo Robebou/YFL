@@ -21,7 +21,7 @@ const GenreFilm = ({genre_id}) => {
           },
           desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 6
+            items: 9
           },
           tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -56,7 +56,7 @@ const GenreFilm = ({genre_id}) => {
 
             >
                 {movies.map((movie) => 
-                    <Link to={`/movie/${movie.id}`}>
+                    <Link to={`/movie/${movie.id}`} key={movie.id}>
                       <img src = {API_IMAGES + movie.poster_path} className="image-movie-genre"/>
                     </Link>
                 )}       
