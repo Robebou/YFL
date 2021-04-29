@@ -29,6 +29,7 @@ function TrendingMovies() {
         const response = await fetch(API_URL_POPULAR);
         const data = await response.json();
         setMovies(data.results) 
+        console.log(data.results)
     }, []);
     return (
         <div className="slide-container">

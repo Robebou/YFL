@@ -31,7 +31,7 @@ function DetailFilm({movie_id}) {
             if(data.revenue == 0) {
                 data.revenue = "undefined"
             } else {
-                data.budget += " $"
+                data.revenue+= " $"
             }
             console.log(info)
             setInfo(data);

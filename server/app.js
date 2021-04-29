@@ -13,9 +13,17 @@ app.set('view engine','ejs')
 app.use(routes)
 const PORT = 8080;
 
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 
 
 app.listen(PORT, () => {
   console.log("server started on port %d",PORT);
+})
+
+app.post('/save_com', (req, res) => {
+  console.log(req.body)
 })
