@@ -1,0 +1,15 @@
+#Commentaire{
+    width: 1140px;
+    background-color: white;
+    margin: auto;
+    overflow: scroll;
+    height: 100vh;
+    box-sizing: border-box;
+}
+form div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    margin: 20px 0;
+}
+
