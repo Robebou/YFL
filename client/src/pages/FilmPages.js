@@ -1,6 +1,6 @@
 
 import DetailFilm from "../components/DetailFilm.js";
-
+import Commentaire from "../components/Commentaire.js"
 var movie_id = 791373;
 
 const FilmPages = ({match}) => {
@@ -8,6 +8,7 @@ const FilmPages = ({match}) => {
         <div className="home">
             <div className="div-home-body"> 
             <DetailFilm movie_id = {match.params.id}/>
+            <Commentaire/>
             </div>         
         </div>
     )

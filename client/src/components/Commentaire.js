@@ -6,7 +6,7 @@ const Commentaire = () => {
         <h1>Comments</h1>
             <form method="post">
                 <div>
-                    <Label for="Pseudo">Id:</Label>
+                    <label for="Pseudo">Id:</label>
                     <input type="text" id="Pseudo" Pseudo="Pseudo"/>
                 </div>
                 <div>

@@ -28,7 +28,7 @@ function TrendingMovies() {
     useEffect(async () => {
         const response = await fetch(API_URL_POPULAR);
         const data = await response.json();
-        setMovies(data.results) // on ne prend que les 4 premiers élements data --> 4 premiers films de la liste Trending
+        setMovies(data.results) 
     }, []);
     return (
         <div className="slide-container">

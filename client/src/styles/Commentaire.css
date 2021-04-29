@@ -1,9 +1,7 @@
 #Commentaire{
     width: 1140px;
-    background-color: white;
+    background-color: #363D6B;
     margin: auto;
-    overflow: scroll;
-    height: 100vh;
     box-sizing: border-box;
 }
 form div{
@@ -11,5 +9,8 @@ form div{
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
     margin: 20px 0;
+}
+#Pseudo,#Comment {
+    background-color: #363D6B;
 }
 
