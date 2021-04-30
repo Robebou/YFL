@@ -11,12 +11,12 @@ function Commentaire() {
         console.log(data)
         const requestOptions = {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "no-cors",
+            //mode: "no-cors",
             headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+            //'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: data
+            body: JSON.stringify(data)
         }
         const response = await fetch(url, requestOptions);
         const data_res = await response.json(); 
