@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import "../styles/login.css"
 
 
-const url = "http://localhost:8080/register";
+const url = "http://localhost:8080/login";
 
 
 function LoginForm({Login, error}) {
     const [details, setDetails] = useState({
         username: "", 
-        email:"", 
         password:""
     });
 
@@ -39,23 +38,18 @@ function LoginForm({Login, error}) {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className ="form-inner">
-                <h2>Login</h2>
-                <div className = "form-group">
+
+        <form onSubmit={submitHandler} className ="form-inner">
+                <h2 className ="h2-login">Login</h2>
+                <div className = "input-group">
                     <label htmlFor="Username">Username :</label>
-                    <input type="text" name="username" id="username" onChange={(e) => handle(e)} value={details.username}/>
+                    <input className="login-input" type="text" name="username" id="username" onChange={(e) => handle(e)} value={details.username}/>
                 </div>
-                <div className = "form-group">
-                    <label htmlFor="email">Email :</label>
-                    <input type="email" name="email" id="email" onChange={(e) => handle(e)} value={details.email}/>
-                </div>
-                <div className = "form-group">
+                <div className = "input-group">
                     <label htmlFor="password">Password :</label>
-                    <input type="password" name="password" id="password" onChange={(e) => handle(e)} value={details.password}/>
+                    <input className="login-input" type="password" name="password" id="password" onChange={(e) => handle(e)} value={details.password}/>
                 </div>
-                <input type="submit" value="login"/>
-            </div>
+                <input type="submit" value="Login" className="login-btn"/>
         </form>
 
     )
