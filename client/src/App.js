@@ -1,6 +1,7 @@
 import Navigation from "./components/Navigation";
 import FilmPages from "./pages/FilmPages";
 import Home from "./pages/Home";
+import Login from "./pages/Login"
 import {BrowserRouter as Router, withRouter, Route, Switch} from 'react-router-dom'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route exact path = "/" component = {Home}/>
           <Route path = "/movie/:id" component = {FilmPages}/>
+          <Route exact path = "/login" component = {Login}/>
           </Switch>
       </div>
     </Router>
