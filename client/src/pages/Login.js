@@ -3,11 +3,10 @@ import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import "../styles/login.css"
 
-function Login() {
 
-    const [user, setUser] = useState({name:"", email:""});
+
+function Login() {
     const [error, setError] = useState("");
-    const [logged, setLog] = useState(false);
     const [loginPage, setLoginPage] = useState();
 
     return(
@@ -26,6 +25,7 @@ function Login() {
                 {!loginPage && <RegisterForm/>}
             </div>
         </div>
-    )
+        )
 }
+    
 export default Login;

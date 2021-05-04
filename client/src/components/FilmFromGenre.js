@@ -38,7 +38,6 @@ const GenreFilm = ({genre_id}) => {
           const response = await fetch(API_URL_MOVIEBYGENRE);
           const data = await response.json();
           setMovies(data.results)
-          console.log(data.results)
         }
         fetchData();
         

@@ -8,7 +8,7 @@ const FilmPages = ({match}) => {
         <div className="home">
             <div className="div-home-body"> 
             <DetailFilm movie_id = {match.params.id}/>
-            <Commentaire/>
+            <Commentaire movie_id = {match.params.id}/>
             </div>         
         </div>
     )

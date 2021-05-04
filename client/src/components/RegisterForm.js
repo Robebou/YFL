@@ -13,9 +13,11 @@ function RegisterForm() {
         confirm_password:""
     });
 
+    const [error,setError] = useState("")
+
     async function submitHandler(e) {
         e.preventDefault();
-        
+
         const requestOptions = {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             //mode: "no-cors",
@@ -28,8 +30,8 @@ function RegisterForm() {
         const response = await fetch(url, requestOptions);
         const data_res = await response.json(); 
         console.log(data_res)
-
     }
+
 
     function handle(e) {
         const newData = {...details};
@@ -53,7 +55,7 @@ function RegisterForm() {
                     </div>
                     <div className = "input-group">
                         <label htmlFor="password">Confirm Password :</label>
-                        <input className="login-input" type="password" name="confirm_password" id="confirm_password" onChange={(e) => handle(e)} value={details.password}/>
+                        <input className="login-input" type="password" name="confirm_password" id="confirm_password" onChange={(e) => handle(e)} value={details.confirm_password}/>
                     </div>
                     <input type="submit" value="Register" className="login-btn"/>
                 </div>

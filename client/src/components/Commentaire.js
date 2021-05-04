@@ -1,50 +1,93 @@
-import React, { Component, useState } from 'react'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 import "../styles/Commentaire.css"
-function Commentaire() {
+import axios from "axios";
+axios.defaults.withCredentials = true;
+
+function Commentaire({movie_id}) {
     const url = "http://localhost:8080/save_com";
     const [data, setData] = useState({
-        userId: "",
-        commentaire: ""
+        commentaire: "",
+        username: "",
+        id_movie: "",
+        id_user: ""
     })
+    const [logged,setLogged] = useState(undefined)
+    const [coms, setComs] = useState([]);
+
+    useLayoutEffect(() => {
+        axios.get("http://localhost:8080/login").then((response) => {
+            console.log(response)
+            if(response.data.loggedIn == true) {
+                setLogged(true)
+                setData({username:response.data.user[0].username,id_movie: movie_id,id_user: response.data.user[0].id})
+            } else {
+                setLogged(false)
+            }
+        })
+
+    }, [])
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/getCommentaire",{
+            params: {
+                movie_id: movie_id
+            }
+        }).then((response)=> {
+            console.log(response.data)
+            setComs(response.data)
+        })
+    },[])
+
+    
+
     async function submit(e) {
         e.preventDefault();
-        console.log(data)
-        const requestOptions = {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            //mode: "no-cors",
-            headers: {
-            'Content-Type': 'application/json',
-            //'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data)
+        if(data.commentaire != "") {
+            axios.post(url, data).then((response) => {
+                setData({commentaire: ""})  
+            })
         }
-        const response = await fetch(url, requestOptions);
-        const data_res = await response.json(); 
-        console.log(data_res)
     }
+
     function handle(e) {
         const newData = {...data};
         newData[e.target.name] = e.target.value;
         setData(newData);
-        console.log(newData);
+        console.log(data)
     }
-
-    return (
-        <section id="Commentaire">
-        <h1>Comments</h1>
-            <form method="post" action="/commentaire" onSubmit={(e) => submit(e)}>
-                <div>
-                    <label for="Pseudo">Id:</label>
-                    <input onChange={(e) => handle(e)} type="text" id="Pseudo" name="userId" value={data.userId}/>
-                </div>
-                <div>
-                    <label for="Comments">Comment</label>
-                    <textarea onChange={(e) => handle(e)} id="Comment" name="commentaire" cols="30" rows="10" value={data.commentaire}></textarea>
-                </div>
-                <button type="submit">Enter</button>
-            </form>
-        </section>
-    )
+    if(logged) {
+        return (
+        <div className="wrapper">
+		    <form action="" method="POST" className="form">
+			<div className="row">
+			</div>
+			<div className="input-group textarea">
+				<label for="comment">{data.username}</label>
+				<textarea id="comment" name="commentaire" placeholder="Enter your Comment" value = {data.commentaire} onChange={(e) => handle(e)}   required></textarea>
+			</div>
+			<div className="input-group">
+				<button classname="btn" onClick={(e)=>submit(e)}>Post Comment</button>
+			</div>
+		</form>
+            <div className="prev-comments">
+                {coms.map((com) => 
+                    <div class="single-item">
+                        <h4>{com.username}</h4>
+                        <p>{com.commentaire}</p>
+                    </div>
+                )}    
+                    
+            </div>
+	    </div>
+        )
+    } else {
+        return(
+            <div>
+                Unlogged
+            </div>
+        )
+    }
+    
 }
 
 export default Commentaire;
