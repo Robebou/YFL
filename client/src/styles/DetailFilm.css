@@ -54,3 +54,8 @@
     margin-right: auto;
     border-radius: 30px;
 }
+.affiche-button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

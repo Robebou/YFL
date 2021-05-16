@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/DetailFilm.css"
 import {Link} from 'react-router-dom';
+import PopUp from "../components/PopUpFilm.js";
 const api_key = "9ea3fe10f4f94f70b6169e29f0f576d6";
 const API_IMAGES = 'https://image.tmdb.org/t/p/w500';
 
@@ -45,9 +46,15 @@ function DetailFilm({movie_id}) {
         <div className = "div-movie-detail">
         <h2 className = "h2-detail">{info.title}</h2>
         <div className = "detail-affiche">
-            <img src = {API_IMAGES + info.poster_path} className="image-movie-detail"/>
+            <div className ="affiche-button">
+                <img src = {API_IMAGES + info.poster_path} className="image-movie-detail"/>
+                <PopUp img ={API_IMAGES+info.poster_path} title = {info.title}/>
+            </div>
+            
             <div className ="detail-overview">{info.overview}</div>
+            
         </div>
+        
         <div className ="detail-bottom">
             <div className ="detail-more-info">
                 <p>Budget : {info.budget} </p>

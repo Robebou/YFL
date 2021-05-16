@@ -153,3 +153,11 @@ app.get("/getCommentaire",(req, res) => {
     console.log(result)
   })
 })
+
+app.post("/deleteCommentaire",(req, res) => {
+  const id = req.body.id;
+  db.query(`DELETE FROM commentaires WHERE id = '${id}'`,(err, result, fields) => {
+    res.send(result)
+    console.log(result)
+  })
+})

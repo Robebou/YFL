@@ -14,6 +14,9 @@ function Commentaire({movie_id}) {
     const [logged,setLogged] = useState(undefined)
     const [coms, setComs] = useState([]);
 
+    let button;
+
+
     useLayoutEffect(() => {
         axios.get("http://localhost:8080/login").then((response) => {
             console.log(response)
@@ -49,11 +52,22 @@ function Commentaire({movie_id}) {
         }
     }
 
+    async function delete_com(com) {
+        axios.post("http://localhost:8080/deleteCommentaire", com).then((response) => {
+            console.log(response)
+        })
+    }
+
     function handle(e) {
         const newData = {...data};
         newData[e.target.name] = e.target.value;
         setData(newData);
         console.log(data)
+    }
+    function showButton(username,com) {
+        if (username == data.username) {
+            return(<button onClick={(() => {delete_com(com)})}>Delete</button>)
+        }
     }
     if(logged) {
         return (
@@ -74,6 +88,7 @@ function Commentaire({movie_id}) {
                     <div class="single-item">
                         <h4>{com.username}</h4>
                         <p>{com.commentaire}</p>
+                        {showButton(com.username,com)}
                     </div>
                 )}    
                     
