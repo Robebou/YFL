@@ -55,7 +55,7 @@ function Commentaire({img,title}) {
         return (
             <div className="popup-wrapper">
                 <Popup
-                    trigger={<button className="button-basic">UWU</button>
+                    trigger={<button className="button-basic">Add Film</button>
                             }
                     modal
                     nested
@@ -76,7 +76,15 @@ function Commentaire({img,title}) {
 
         )
     } else {
-        return (<div></div>)
+        return (
+            <Popup trigger={<button className="button-basic">Add Film</button>} modal>
+                {close => (
+                    <div className="content">
+                    You need to login !
+                    </div>
+                )}
+            </Popup>
+        )
     }
     
 }

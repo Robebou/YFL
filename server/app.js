@@ -149,7 +149,7 @@ app.post("/save_com",(req, res) => {
 app.get("/getCommentaire",(req, res) => {
   const movie_id = req.query.movie_id
   db.query(`SELECT * from commentaires WHERE movie_id='${movie_id}'`,(err, result, fields) => {
-    res.send(result)
+    res.send({result: result, size: result.length})
     console.log(result)
   })
 })
