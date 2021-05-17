@@ -32,15 +32,24 @@
   border-radius: 18px;
   border: 1px solid #363D6B;
 }
-.popup-content {
+.content-popup {
   margin: auto;
   background: #363D6B;
-  width: 50%;
   padding: 5px;
+  display: flex;
+  flex-direction: row;
 }
 .popup-overlay {
   background: rgba(0, 0, 0, 0.7);
 }
-.header {
-    color: white;
+.popup-header {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+.select-wrapper {
+  width: 100%;
+}
+.image-popup{
+  float: left;
 }

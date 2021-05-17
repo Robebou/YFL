@@ -128,7 +128,7 @@ class Commentaire extends React.Component {
                 </div>
                 <div className="input-group textarea">
                     <label for="comment">{this.state.username}</label>
-                    <textarea id="comment" placeholder="Enter your Comment" value = {this.state.value} onChange={this.handleChange}   required></textarea>
+                    <textarea id="comment" placeholder="Enter your Comment" value = {this.state.commentaire} onChange={this.handleChange}   required></textarea>
                 </div>
                 <div className="input-group">
                     <button classname="btn" onClick={(e)=>this.submit(e)} >Post Comment</button>

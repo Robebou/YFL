@@ -26,7 +26,7 @@
 .detail-affiche {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 .detail-more-info {
     background-color: #363D6B;
@@ -48,12 +48,14 @@
     width: 100%;
 }
 .detail-recommandation {
-    width: 40%;
+    width: 41%;
     background-color: #363D6B;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 10px;
     border-radius: 30px;
 }
 .affiche-button {
     display: flex;
+    justify-content: center;
 }

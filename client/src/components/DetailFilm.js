@@ -48,10 +48,12 @@ function DetailFilm({movie_id}) {
         <div className = "detail-affiche">
             <div className ="affiche-button">
                 <img src = {API_IMAGES + info.poster_path} className="image-movie-detail"/>
-                <PopUp img ={API_IMAGES+info.poster_path} title = {info.title}/>
+                <div className ="detail-overview">{info.overview}</div>
+                
             </div>
             
-            <div className ="detail-overview">{info.overview}</div>
+            
+            <PopUp img ={API_IMAGES+info.poster_path} title = {info.title}/>
             
         </div>
         
