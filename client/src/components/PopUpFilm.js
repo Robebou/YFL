@@ -47,18 +47,27 @@ function PopupFilm({img,title,movie_id}) {
         axios.get("http://localhost:8080/getUserFilm",{
             params: {
                 movie_id: movie_id,
+                user_id: data.id_user
 
-            },
-            withCredentials: true, 
-            credentials: 'include'
+            }
         }).then((response) => {
+            console.log("oui")
             console.log(response)
             if(response.data.loggedIn == true) {
-                setLogged(true)
-                setData({id_movie: movie_id,id_user: response.data.user[0].id})
+                setLogged(true);
+                if(response.data.result.length > 0) {
+                    var response_data = response.data.result[0];
+                    setData({isSeen: response_data.isSeen,score:response_data.score,like:response_data.isLiked,id_movie:response_data.movie_id,id_user:response_data.user_id})
+                } else {
+                    console.log(response)
+                    setData({id_movie:movie_id,id_user:response.data.user_id})
+                }
+               
             } else {
-                setLogged(false)
+                setData({like: 0});
+                setLogged(false);
             }
+            
         })
 
     }, [])
@@ -119,15 +128,15 @@ function PopupFilm({img,title,movie_id}) {
                                     <div className="select-wrapper">
                                         <div className="popup-select">
                                             <h2 className="h2-popup">Current state : </h2>
-                                            <Select options={filmoptions} defaultValue={data.isSeen} onChange={handleSeen}/>
+                                            <Select options={filmoptions} defaultValue={{label:data.isSeen,value:data.isSeen}} onChange={handleSeen}/>
                                         </div>
                                         <div className="popup-select">
                                             <h2 className="h2-popup">Note : </h2>
-                                            <Select options={scoreoptions} defaultValue={data.score} onChange={handleScore}/>
+                                            <Select options={scoreoptions} defaultValue={{label:data.score,value:data.score}} onChange={handleScore}/>
                                         </div>
                                     </div>
                                     <div className="coup-de-coeur">
-                                        <input id="toggle-heart" type="checkbox" defaultValue={data.like} onChange={(e) => {handleCheck(e)}}/>
+                                        <input id="toggle-heart" type="checkbox" defaultChecked={data.like} onChange={(e) => {handleCheck(e)}}/>
                                         <label for="toggle-heart">❤</label>
                                     </div>
                                 </div>

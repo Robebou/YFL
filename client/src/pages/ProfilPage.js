@@ -10,7 +10,6 @@ axios.defaults.withCredentials = true;
 function ProfilPage() {
 
     const [logged, setLogged] = useState(false);
-    const [isBusy, setBusy] = useState(true);
     const url = "http://localhost:8080/login";
 
     useEffect(() => {
@@ -18,7 +17,6 @@ function ProfilPage() {
             if (response.data.loggedIn == true) {
                 setLogged(true)
               }        
-              setBusy(false)
         })
     }, [])
     

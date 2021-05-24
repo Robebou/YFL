@@ -16,12 +16,11 @@ const cors = require('cors')
 
 var app = express()
 app.use(cors({
-  origin: function(origin, callback){
-    return callback(null, true);
-  },
+  origin: true,
   optionsSuccessStatus: 200,
   credentials: true
 }));
+app.options('*', cors());
 app.use(express.json())
 
 app.use(cookieParser("salut"))
@@ -172,10 +171,8 @@ app.post("/saveUserFilm",(req, res) => {
   const id_user = req.body.id_user;
   const isSeen = req.body.isSeen;
   const score = req.body.score;
-  var like = req.body.like;
-  if(like !=0 || like != 1) {
-    like = 0;
-  }
+  const like = req.body.like;
+  
   console.log(req.body)
 
   db.query(`SELECT * FROM films_interactions WHERE user_id = ${id_user} AND movie_id=${id_movie}`,(err, result, fields) => {
@@ -194,17 +191,15 @@ app.post("/saveUserFilm",(req, res) => {
 })
 
 app.get("/getUserFilm",(req, res) => {
-  console.log("?")
-  console.log(req.session)
   const movie_id = req.query.movie_id
   if(req.session.user) {
     const user_id = req.session.user[0].id;
-    console.log(movie_id,user_id)
     db.query(`SELECT * FROM films_interactions WHERE user_id = ${user_id} AND movie_id = ${movie_id}`,(err, result, fields) => {
-      res.send({loggedIn: true, user: req.session.user})
+      if(err) throw err;
+      res.send({result: result,loggedIn: true,user_id:user_id})
     })
     
   } else {
-    res.send({loggedIn: false})
+    res.send({loggedIn: false,user_id:user_id})
   }
 })
