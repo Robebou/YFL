@@ -24,9 +24,8 @@ function ProfilPage() {
     
     return(
         <div>
-            {isBusy && <LoadingScreen/>}
-            {!isBusy && !logged && <Login/>}
-            {!isBusy && logged && <DetailsUser/>}
+            {!logged && <Login/>}
+            {logged && <DetailsUser/>}
         </div>
     )
     

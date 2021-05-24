@@ -53,7 +53,7 @@ function DetailFilm({movie_id}) {
             </div>
             
             
-            <PopUp img ={API_IMAGES+info.poster_path} title = {info.title}/>
+            <PopUp img ={API_IMAGES+info.poster_path} title = {info.title} movie_id={id}/>
             
         </div>
         

@@ -3,73 +3,100 @@ import Popup from 'reactjs-popup';
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import axios from "axios";
 import 'reactjs-popup/dist/index.css';
-import "../styles/PopUpFilm.css"
+import "../styles/PopUpFilm.scss"
 import "../styles/button.css"
 import Select from 'react-select'
 axios.defaults.withCredentials = true;
 
-function Commentaire({img,title}) {
-    const url = "http://localhost:8080/save_com";
+function PopupFilm({img,title,movie_id}) {
+    const url = "http://localhost:8080/saveUserFilm";
     const [data, setData] = useState({
-        commentaire: "",
-        username: "",
+        isSeen: "",
+        score: "",
         id_movie: "",
-        id_user: ""
+        id_user: "",
+        like: ""
     })
-    const [logged,setLogged] = useState(undefined)
-    const [coms, setComs] = useState([]);
+    const [logged,setLogged] = useState(undefined);
+    const [error,setError] = useState("");
 
     let button;
 
     const filmoptions = [
-        { value: 'Already Seen', label: 'Already Seen' },
-        { value: 'Planned to view', label: 'Planned to view' },
-        { value: 'Paused', label: 'Paused' },
-        { value: 'Dropped', label: 'Dropped' }
+        { value: 1, label: 'Already Seen' },
+        { value: 2, label: 'Planned to view' },
+        { value: 3, label: 'Paused' },
+        { value: 4, label: 'Dropped' }
     ]
     const scoreoptions = [
-        { value: '1', label: '1' },
-        { value: '2', label: '2' },
-        { value: '3', label: '3' },
-        { value: '4', label: '4' },
-        { value: '5', label: '5' },
-        { value: '6', label: '6' },
-        { value: '7', label: '7' },
-        { value: '8', label: '8' },
-        { value: '9', label: '9' },
-        { value: '10', label: '10' }
+        { value: 1, label: '1' },
+        { value: 2, label: '2' },
+        { value: 3, label: '3' },
+        { value: 4, label: '4' },
+        { value: 5, label: '5' },
+        { value: 6, label: '6' },
+        { value: 7, label: '7' },
+        { value: 8, label: '8' },
+        { value: 9, label: '9' },
+        { value: 10, label: '10' }
     ]
 
 
     useLayoutEffect(() => {
-        axios.get("http://localhost:8080/login").then((response) => {
+        setError("");
+        axios.get("http://localhost:8080/getUserFilm",{
+            params: {
+                movie_id: movie_id,
+
+            },
+            withCredentials: true, 
+            credentials: 'include'
+        }).then((response) => {
             console.log(response)
             if(response.data.loggedIn == true) {
                 setLogged(true)
-                setData({username:response.data.user[0].username,id_user: response.data.user[0].id})
+                setData({id_movie: movie_id,id_user: response.data.user[0].id})
             } else {
                 setLogged(false)
             }
         })
 
     }, [])
-
-    
-
+    function handleScore({value}) {
+        const newData = {...data};
+        newData["score"] =value;
+        setData(newData);
+        
+    }
+    function handleSeen(value) {
+        const newData = {...data};
+        newData["isSeen"] =value.label;
+        setData(newData);
+    }
+    function handleCheck(e) {
+        const newData = {...data};
+        if(e.target.checked == false) {
+            newData["like"] = 0;
+        } else {
+            newData["like"] = 1;
+        }
+       
+        setData(newData);
+        console.log(newData)
+    }
     async function submit(e) {
         e.preventDefault();
-        if(data.commentaire != "") {
+        if(data.score == "" || data.isSeen == "") {
+            setError("Error");
+            console.log("error")
+        } else {
             axios.post(url, data).then((response) => {
-                setData({commentaire: ""})  
+                console.log(response)
+                setError(response.data.message)
             })
         }
-    }
-
-    function handle(e) {
-        const newData = {...data};
-        newData[e.target.name] = e.target.value;
-        setData(newData);
-        console.log(data)
+        
+        
     }
     if(logged) {
         return (
@@ -88,10 +115,26 @@ function Commentaire({img,title}) {
                         <div className="popup-header">{title}</div>
                             <div className="content-popup">
                                 <img src = {img} className="image-popup"/>
-                                <div className="select-wrapper">
-                                    <Select options={filmoptions}/>
-                                    <Select options={scoreoptions}/>
+                                <div className="popup-right">
+                                    <div className="select-wrapper">
+                                        <div className="popup-select">
+                                            <h2 className="h2-popup">Current state : </h2>
+                                            <Select options={filmoptions} defaultValue={data.isSeen} onChange={handleSeen}/>
+                                        </div>
+                                        <div className="popup-select">
+                                            <h2 className="h2-popup">Note : </h2>
+                                            <Select options={scoreoptions} defaultValue={data.score} onChange={handleScore}/>
+                                        </div>
+                                    </div>
+                                    <div className="coup-de-coeur">
+                                        <input id="toggle-heart" type="checkbox" defaultValue={data.like} onChange={(e) => {handleCheck(e)}}/>
+                                        <label for="toggle-heart">❤</label>
+                                    </div>
                                 </div>
+                            </div>
+                            <div className="popup-footer">
+                                <div className="popup-error">{error}</div>
+                                <button className="button-basic" onClick={(e) => {submit(e)}}>Validate</button>
                             </div>
                     </div>
                     )}
@@ -101,6 +144,7 @@ function Commentaire({img,title}) {
         )
     } else {
         return (
+            <div className="popup-wrapper">
             <Popup trigger={<button className="button-basic">Add Film</button>} modal>
                 {close => (
                     <div className="content">
@@ -108,9 +152,10 @@ function Commentaire({img,title}) {
                     </div>
                 )}
             </Popup>
+            </div>
         )
     }
     
 }
 
-export default Commentaire;
+export default PopupFilm;

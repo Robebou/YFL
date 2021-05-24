@@ -11,17 +11,23 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var mysql = require("mysql")
-var cors = require('cors')
-var app = express()
+const cors = require('cors')
 
-app.use(express.json())
+
+var app = express()
 app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET","POST"],
+  origin: function(origin, callback){
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
   credentials: true
 }));
+app.use(express.json())
+
 app.use(cookieParser("salut"))
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 
 app.use(session({
@@ -150,7 +156,6 @@ app.get("/getCommentaire",(req, res) => {
   const movie_id = req.query.movie_id
   db.query(`SELECT * from commentaires WHERE movie_id='${movie_id}'`,(err, result, fields) => {
     res.send({result: result, size: result.length})
-    console.log(result)
   })
 })
 
@@ -160,4 +165,46 @@ app.post("/deleteCommentaire",(req, res) => {
     res.send(result)
     console.log(result)
   })
+})
+
+app.post("/saveUserFilm",(req, res) => {
+  const id_movie = parseInt(req.body.id_movie,10);
+  const id_user = req.body.id_user;
+  const isSeen = req.body.isSeen;
+  const score = req.body.score;
+  var like = req.body.like;
+  if(like !=0 || like != 1) {
+    like = 0;
+  }
+  console.log(req.body)
+
+  db.query(`SELECT * FROM films_interactions WHERE user_id = ${id_user} AND movie_id=${id_movie}`,(err, result, fields) => {
+    if(result.length == 0) {
+      db.query(`INSERT INTO films_interactions (user_id,movie_id,score,isSeen,isLiked) VALUES(?,?,?,?,?)`,[id_user,id_movie,score,isSeen,like],(err2, result2) =>{
+        if(err2) throw err2;
+        res.send({message: "Informations were saved in DB"});
+      })
+    } else { 
+      db.query(`UPDATE films_interactions SET score = ${score}, isLiked =${like}, isSeen = "${isSeen}" WHERE user_id=${id_user} and movie_id=${id_movie}`,(err2,result2, fields) => {
+        if(err2) throw err2;
+        res.send({message: "Informations were saved in DB"});
+      })
+    }
+  })
+})
+
+app.get("/getUserFilm",(req, res) => {
+  console.log("?")
+  console.log(req.session)
+  const movie_id = req.query.movie_id
+  if(req.session.user) {
+    const user_id = req.session.user[0].id;
+    console.log(movie_id,user_id)
+    db.query(`SELECT * FROM films_interactions WHERE user_id = ${user_id} AND movie_id = ${movie_id}`,(err, result, fields) => {
+      res.send({loggedIn: true, user: req.session.user})
+    })
+    
+  } else {
+    res.send({loggedIn: false})
+  }
 })
