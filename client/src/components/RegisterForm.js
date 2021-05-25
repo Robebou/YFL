@@ -10,12 +10,15 @@ function RegisterForm() {
     const [details, setDetails] = useState({
         username: "", 
         password:"",
-        confirm_password:""
+        confirm_password:"",
+        age:"",
+        genre:""
     });
 
     const [error,setError] = useState("")
 
     async function submitHandler(e) {
+        console.log(details)
         e.preventDefault();
         if(details.password != details.confirm_password) {
             setError("Password are not equals");
@@ -52,15 +55,28 @@ function RegisterForm() {
                     <div className="form-error">{error}</div>
                     <div className = "input-group">
                         <label htmlFor="Username">Username :</label>
-                        <input type="text" name="username" id="username" onChange={(e) => handle(e)} value={details.username}/>
+                        <input type="text" name="username" id="username" required onChange={(e) => handle(e)} value={details.username}/>
                     </div>
                     <div className = "input-group">
                         <label htmlFor="password">Password :</label>
-                        <input type="password" name="password" id="password" onChange={(e) => handle(e)} value={details.password}/>
+                        <input type="password" name="password" id="password" required onChange={(e) => handle(e)} value={details.password}/>
                     </div>
                     <div className = "input-group">
                         <label htmlFor="password">Confirm Password :</label>
                         <input className="login-input" type="password" name="confirm_password" id="confirm_password" onChange={(e) => handle(e)} value={details.confirm_password}/>
+                    </div>
+                    <div className = "input-group">
+                        <label htmlFor="password">Age:</label>
+                        <input className="login-input" name="age" id="age" onChange={(e) => handle(e)} value={details.age}/>
+                    </div>
+                    <div className = "input-group">
+                        <label htmlFor="password">Genre</label>
+                        <select name = "genre" id ="genre" onChange={(e) => handle(e)}>
+                            <option value=""></option>
+                            <option value="M">M.</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mlle">Mlle</option>
+                        </select>
                     </div>
                     <input type="submit" value="Register" className="login-btn"/>
                 </div>
