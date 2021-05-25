@@ -38,6 +38,13 @@ app.use(session({
 var routes = require("./routes/routes")
 
 
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+app.use(allowCrossDomain);
 
 
 app.use(express.static('views'))
@@ -172,17 +179,18 @@ app.post("/saveUserFilm",(req, res) => {
   const isSeen = req.body.isSeen;
   const score = req.body.score;
   const like = req.body.like;
+  const img = req.body.img;
   
   console.log(req.body)
 
   db.query(`SELECT * FROM films_interactions WHERE user_id = ${id_user} AND movie_id=${id_movie}`,(err, result, fields) => {
     if(result.length == 0) {
-      db.query(`INSERT INTO films_interactions (user_id,movie_id,score,isSeen,isLiked) VALUES(?,?,?,?,?)`,[id_user,id_movie,score,isSeen,like],(err2, result2) =>{
+      db.query(`INSERT INTO films_interactions (user_id,movie_id,score,isSeen,isLiked,img) VALUES(?,?,?,?,?,?)`,[id_user,id_movie,score,isSeen,like,img],(err2, result2) =>{
         if(err2) throw err2;
         res.send({message: "Informations were saved in DB"});
       })
     } else { 
-      db.query(`UPDATE films_interactions SET score = ${score}, isLiked =${like}, isSeen = "${isSeen}" WHERE user_id=${id_user} and movie_id=${id_movie}`,(err2,result2, fields) => {
+      db.query(`UPDATE films_interactions SET img = "${img}", score = ${score}, isLiked =${like}, isSeen = "${isSeen}" WHERE user_id=${id_user} and movie_id=${id_movie}`,(err2,result2, fields) => {
         if(err2) throw err2;
         res.send({message: "Informations were saved in DB"});
       })
@@ -202,4 +210,18 @@ app.get("/getUserFilm",(req, res) => {
   } else {
     res.send({loggedIn: false,user_id:user_id})
   }
+})
+
+app.get("/getAllUserFilm",(req, res) => {
+  if(req.session.user) {
+    console.log(req.session)
+    const user_id = req.session.user[0].id;
+    db.query(`SELECT * FROM films_interactions WHERE user_id = ${user_id} `,(err, result, fields) => {
+      if(err) throw err;
+      res.send({result: result,loggedIn: true,username: req.session.user[0].username})
+    })
+  } else {
+    res.send({message:"not working"})
+  }
+
 })

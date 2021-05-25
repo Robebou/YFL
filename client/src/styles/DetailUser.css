@@ -4,3 +4,36 @@
     font-size: 2rem;
 
 }
+.user-film-liked {
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: hidden; 
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}
+.user-film-liked:hover {
+    overflow: auto;
+    overflow-y: hidden; 
+}
+.user-film-seen {
+}
+.user-film-wrapper {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.h2-films {
+    color: white;
+}
+.user-wrapper {
+    text-align: center;
+}
+.user-note-container {
+    display: flex;
+    flex-direction: column;
+}
+.user-h3-score {
+    color: white;
+}

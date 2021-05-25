@@ -15,7 +15,8 @@ function PopupFilm({img,title,movie_id}) {
         score: "",
         id_movie: "",
         id_user: "",
-        like: ""
+        like: "",
+        img: ""
     })
     const [logged,setLogged] = useState(undefined);
     const [error,setError] = useState("");
@@ -47,20 +48,18 @@ function PopupFilm({img,title,movie_id}) {
         axios.get("http://localhost:8080/getUserFilm",{
             params: {
                 movie_id: movie_id,
-                user_id: data.id_user
 
             }
         }).then((response) => {
-            console.log("oui")
-            console.log(response)
             if(response.data.loggedIn == true) {
                 setLogged(true);
                 if(response.data.result.length > 0) {
                     var response_data = response.data.result[0];
                     setData({isSeen: response_data.isSeen,score:response_data.score,like:response_data.isLiked,id_movie:response_data.movie_id,id_user:response_data.user_id})
                 } else {
+                    console.log("????")
                     console.log(response)
-                    setData({id_movie:movie_id,id_user:response.data.user_id})
+                    setData({id_user:response.data.user_id,id_movie:movie_id})
                 }
                
             } else {
@@ -99,7 +98,7 @@ function PopupFilm({img,title,movie_id}) {
             setError("Error");
             console.log("error")
         } else {
-            axios.post(url, data).then((response) => {
+            axios.post(url, {isSeen: data.isSeen, id_user:data.id_user, id_movie:data.id_movie, score:data.score, like:data.like,img: img}).then((response) => {
                 console.log(response)
                 setError(response.data.message)
             })
