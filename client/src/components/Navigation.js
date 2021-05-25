@@ -11,7 +11,10 @@ const Navigation = () => {
                     <ul>
                         <li className="li-not-pp"><a href="#">Ma Liste</a></li>
                         <li className="li-not-pp"><a href="#">Film</a></li>
-                        <li className="li-not-pp"><a href="#">Série</a></li>
+                        
+                        <Link to ="/aboutUs">
+                            <li className="li-not-pp"><a href="#">About Us</a></li>
+                        </Link>
                         <Link to ="/userPage">
                             <li><a href="#"><img src ="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg" className="img-nav-pp"/></a></li>
                         </Link>

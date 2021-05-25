@@ -1,0 +1,25 @@
+.h1-about {
+    color: white;
+    text-align: center;
+}
+.info-images {
+    border-radius: 50%;
+    max-width: 50%;
+	height: auto;
+}
+.all-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.info-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+
+}
+.info-name {
+    color: white;
+}
