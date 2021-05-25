@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const path = require('path');
 
-const port = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
