@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const path = require('path');
 
 
 
@@ -26,6 +27,12 @@ app.use(express.json())
 app.use(cookieParser("salut"))
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 
@@ -200,6 +207,6 @@ app.get("/getUserFilm",(req, res) => {
     })
     
   } else {
-    res.send({loggedIn: false,user_id:user_id})
+    res.send({loggedIn: false})
   }
 })
