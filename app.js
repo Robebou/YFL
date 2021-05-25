@@ -1,7 +1,7 @@
 
 const PORT = process.env.PORT || 3000;
 
-
+const path = require('path');
 const http = require('http');
 const express = require('express');
 
@@ -31,7 +31,12 @@ app.use(cookieParser("salut"))
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+app.use(express.static(path.join(__dirname, 'build')));
 
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.use(session({
   secret: "salut",
