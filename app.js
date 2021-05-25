@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const path = require('path');
 
-
+const port = process.env.PORT;
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -69,7 +69,6 @@ db.connect(function(err) {
   console.log("Connected to DB")
 })
 
-const PORT = 8080;
 
 
 
