@@ -112,7 +112,9 @@ function DetailsUser() {
     })
 
     const film_notes = 
-    filmInfo.map((movie) => {
+    (filmInfo.sort(function(a,b) {
+        return b.score - a.score;
+    })).map((movie) => {
             return(
                 <div className = "user-note-container">
                     <Link to={`/movie/${movie.movie_id}`} key={movie.movie_id}>
