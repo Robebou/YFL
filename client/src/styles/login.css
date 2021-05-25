@@ -14,6 +14,9 @@
     line-height: 2;
     cursor: pointer;
 }
+.form-error {
+    color: red;
+}
 .button-container{
     visibility: visible;
     display: flex;

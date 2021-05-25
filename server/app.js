@@ -84,7 +84,7 @@ app.post("/register",(req, res) => {
   db.query(`SELECT username FROM users where username ="${username}"`, function(err, result, fields)  {
     if(err) throw err;
     if(result.length > 0) {
-      res.send({message :"user already exist"})
+      res.send({message :"User already exists"})
       console.log(username + " already exist in DB")
     } else {
       bcrypt.hash(password, saltRounds,(err, hash) => {
@@ -92,6 +92,7 @@ app.post("/register",(req, res) => {
         db.query("INSERT INTO users (username, password) VALUES (?,?)",[username,hash],
         (err, result) => {
           console.log(err);
+          res.send({message:"You are now registered ! Please Login"})
         }
       )
       })
