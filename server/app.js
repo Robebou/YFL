@@ -15,13 +15,14 @@ const cors = require('cors')
 
 
 var app = express()
+app.use(express.json())
 app.use(cors({
   origin: true,
   optionsSuccessStatus: 200,
   credentials: true
 }));
 app.options('*', cors());
-app.use(express.json())
+
 
 app.use(cookieParser("salut"))
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -6,8 +6,13 @@ const Home = () => {
     return (
         <div className="home">
             <div className="div-home-body">
+                <div className="Trending-div">
                 <TrendingMovies />
+                </div>
+                <div className="div-genre-film">
                 <GenreFilm/>   
+                </div>
+                
             </div>         
         </div>
     )

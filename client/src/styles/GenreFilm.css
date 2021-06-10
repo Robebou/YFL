@@ -21,3 +21,9 @@
     margin: 0;
     font-size: 2.5rem;
 }
+@media only screen and (max-width: 900px) {
+    .genre-container{
+        float: none;
+        width: 100%;
+    }
+}
